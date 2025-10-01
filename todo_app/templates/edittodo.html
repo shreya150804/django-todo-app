@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Todo Page</title>
+  <link rel="stylesheet" href="{% static 'index.css' %}" />
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+   <div class="signup-login">
+    <div class="signup-box">
+        <div class="heding">
+            Hello {{Username}}    
+            Get Things Done....
+        </div>
+        
+        <!-- Logout Icon -->
+        <a href=""><i class="fa-solid fa-right-from-bracket"></i></a>
+        
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" class="inp" required name="title" placeholder="Add today's task" value={{obj.title}}>
+            <input type="submit" class="submit-button" value="Update Task" >
+        </form>
+
+        {% for todo in res %}
+        <div class="Todo">
+            <h5>{{todo.srno}}</h5>
+            <p>{{todo.title}}</p>   
+            <div>
+                <a href=""><i class="fa-solid fa-pen-to-square"></i></a>
+                <a href=""><i class="fa-solid fa-trash"></i></a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+   </div>
+</body>
